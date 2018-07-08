@@ -1,0 +1,519 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<name>WEB MAO</name>
+	<artifactId>mao</artifactId>
+	<version>1.8.4</version>
+	<packaging>war</packaging>
+	<!-- <groupId>es.oepm.areaae.mao.desplegables</groupId> -->
+
+	<parent>
+		<groupId>es.oepm</groupId>
+		<artifactId>parent</artifactId>
+		<version>1.3.1</version>
+	</parent>
+
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+	</properties>
+
+	<dependencies>
+		<dependency>
+			<groupId>es.oepm</groupId>
+			<artifactId>core</artifactId>
+			<version>${project.parent.version}</version>
+			<exclusions>
+				<exclusion>
+					<artifactId>activation</artifactId>
+					<groupId>javax.activation</groupId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+
+		<dependency>
+			<groupId>es.oepm</groupId>
+			<artifactId>maoceo.comun</artifactId>
+			<version>${project.parent.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>es.oepm</groupId>
+			<artifactId>persistencia.mao</artifactId>
+			<version>${project.parent.version}</version>
+		</dependency>
+
+
+		<dependency>
+			<groupId>es.oepm</groupId>
+			<artifactId>mao.comun</artifactId>
+			<version>${project.parent.version}</version>
+		</dependency>
+
+		<!-- Clientes WS -->
+		<dependency>
+			<groupId>es.oepm</groupId>
+			<artifactId>wservices.core</artifactId>
+			<version>${project.parent.version}</version>
+			<exclusions>
+				<exclusion>
+					<groupId>asm</groupId>
+					<artifactId>asm</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+
+		<dependency>
+			<groupId>es.oepm</groupId>
+			<artifactId>wsclient.sireco</artifactId>
+			<version>${project.parent.version}</version>
+			<exclusions>
+				<exclusion>
+					<artifactId>activation</artifactId>
+					<groupId>javax.activation</groupId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+
+		<dependency>
+			<groupId>es.oepm</groupId>
+			<artifactId>wsclient.ucm</artifactId>
+			<version>${project.parent.version}</version>
+			<exclusions>
+				<exclusion>
+					<artifactId>activation</artifactId>
+					<groupId>javax.activation</groupId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+
+		<dependency>
+			<groupId>es.oepm</groupId>
+			<artifactId>wsclient.ucmFGMTOM</artifactId>
+			<version>${project.parent.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>es.oepm</groupId>
+			<artifactId>wsclient.comynot</artifactId>
+			<version>${project.parent.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>es.oepm</groupId>
+			<artifactId>wsclient.bopi</artifactId>
+			<version>${project.parent.version}</version>
+		</dependency>
+
+
+		<dependency>
+			<groupId>es.oepm</groupId>
+			<artifactId>wsclient.pagosAlfa</artifactId>
+			<version>${project.parent.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>es.oepm</groupId>
+			<artifactId>wsclient.bus</artifactId>
+			<version>${project.parent.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>es.oepm</groupId>
+			<artifactId>wsclient.plataval</artifactId>
+			<version>${project.parent.version}</version>
+		</dependency>
+
+
+		<dependency>
+			<groupId>es.oepm</groupId>
+			<artifactId>wsclient.pasarela2WS</artifactId>
+			<version>${project.parent.version}</version>
+		</dependency>
+
+
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>servlet-api</artifactId>
+			<version>3.0-alpha-1</version>
+			<scope>provided</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>com.itextpdf</groupId>
+			<artifactId>itextpdf</artifactId>
+			<version>5.4.2</version>
+			<type>jar</type>
+		</dependency>
+
+		<dependency>
+			<groupId>org.xhtmlrenderer</groupId>
+			<artifactId>flying-saucer-pdf-itext5</artifactId>
+			<version>9.0.2</version>
+		</dependency>
+
+		<dependency>
+			<groupId>rome</groupId>
+			<artifactId>rome</artifactId>
+			<version>1.0</version>
+		</dependency>
+
+		<!-- QuartzJobBean in spring-context-support.jar -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-context-support</artifactId>
+			<version>3.1.2.RELEASE</version>
+		</dependency>
+
+		<!-- Quartz framework -->
+		<dependency>
+			<groupId>org.quartz-scheduler</groupId>
+			<artifactId>quartz</artifactId>
+			<version>1.8.6</version>
+		</dependency>
+
+		<!-- Dozer Mapper -->
+		<dependency>
+			<groupId>net.sf.dozer</groupId>
+			<artifactId>dozer</artifactId>
+			<version>5.4.0</version>
+		</dependency>
+	</dependencies>
+
+	<build>
+		<finalName>mao</finalName>
+		<plugins>
+			<plugin>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<configuration>
+					<source>1.7</source>
+					<target>1.7</target>
+					<encoding>UTF-8</encoding>
+				</configuration>
+			</plugin>
+
+			<!-- replace version in file -->
+			<plugin>
+				<groupId>com.google.code.maven-replacer-plugin</groupId>
+				<artifactId>replacer</artifactId>
+				<version>1.5.2</version>
+				<executions>
+					<execution>
+						<!-- the replace should happen before the app is packaged -->
+						<phase>prepare-package</phase>
+						<goals>
+							<goal>replace</goal>
+						</goals>
+					</execution>
+				</executions>
+				<configuration>
+					<ignoreMissingFile>true</ignoreMissingFile>
+					<basedir>${basedir}</basedir>
+					<file>src/main/webapp/WEB-INF/facelets/templates/templateAModificar.xhtml</file>
+					<outputFile>src/main/webapp/WEB-INF/facelets/templates/template.xhtml</outputFile>
+					<regex>false</regex>
+					<token>%PROJECTVERSION%</token>
+					<value>${project.version}</value>
+				</configuration>
+			</plugin>
+
+			<!-- <plugin> -->
+			<!-- <artifactId>maven-deploy-plugin</artifactId> -->
+			<!-- <version>2.8.2</version> -->
+			<!-- <configuration> -->
+			<!-- <skip>true</skip> se incluye para evitar que se suba dos veces a 
+				archiva -->
+
+			<!-- </configuration> -->
+			<!-- <executions> -->
+			<!-- <execution> -->
+			<!-- <phase>deploy</phase> -->
+			<!-- <goals> -->
+			<!-- <goal>deploy-file</goal> -->
+			<!-- </goals> -->
+			<!-- <configuration> -->
+			<!-- <repositoryId>${project.distributionManagement.repository.id}</repositoryId> -->
+			<!-- <url>${project.distributionManagement.repository.url}</url> -->
+			<!-- <file>${project.build.directory}\${project.build.finalName}.${project.packaging}</file> -->
+			<!-- <groupId>${project.groupId}.desplegables</groupId> -->
+			<!-- <artifactId>${project.artifactId}</artifactId> -->
+			<!-- <version>${project.version}</version> -->
+			<!-- </configuration> -->
+			<!-- </execution> -->
+			<!-- </executions> -->
+			<!-- </plugin> -->
+
+			<!-- maven-surefire-plugin -->
+
+			<plugin>
+				<artifactId>maven-surefire-plugin</artifactId>
+				<version>2.14</version>
+				<executions>
+					<execution>
+						<id>default-test</id>
+						<phase>test</phase>
+						<goals>
+							<goal>test</goal>
+						</goals>
+						<configuration>
+							<argLine>${surefireArgLine}</argLine>
+						</configuration>
+					</execution>
+				</executions>
+				<configuration>
+					<argLine>-XX:MaxPermSize=512m</argLine>
+				</configuration>
+			</plugin>
+
+			<!-- JaCoCo plugin -->
+			<plugin>
+				<groupId>org.jacoco</groupId>
+				<artifactId>jacoco-maven-plugin</artifactId>
+				<version>0.7.2.201409121644</version>
+				<configuration>
+					<append>true</append>
+				</configuration>
+				<executions>
+
+					<!-- Prepares the property pointing to the JaCoCo runtime agent which 
+						is passed as VM argument when Maven the Surefire plugin is executed. -->
+
+					<execution>
+						<id>pre-unit-test</id>
+						<goals>
+							<goal>prepare-agent</goal>
+						</goals>
+						<configuration>
+
+							<!-- Sets the path to the file which contains the execution data. -->
+
+							<destFile>${project.build.directory}/coverage-reports/jacoco-ut.exec</destFile>
+							<propertyName>surefireArgLine</propertyName>
+						</configuration>
+					</execution>
+
+					<!-- Ensures that the code coverage report for unit tests is created 
+						after unit tests have been run. -->
+
+					<execution>
+						<id>post-unit-test</id>
+						<phase>test</phase>
+						<goals>
+							<goal>report</goal>
+						</goals>
+						<configuration>
+
+							<!-- Sets the path to the file which contains the execution data. -->
+
+							<dataFile>${project.build.directory}/coverage-reports/jacoco-ut.exec</dataFile>
+
+							<!-- Sets the output directory for the code coverage report. -->
+							<outputDirectory>/usr/share/tomcat6/.jenkins/workspace/outputMAOTests/jacoco-ut</outputDirectory>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+			<!-- Configuración del despliegue en remoto en JBoss -->
+			<plugin>
+				<groupId>org.jboss.as.plugins</groupId>
+				<artifactId>jboss-as-maven-plugin</artifactId>
+				<version>7.7.Final</version>
+				<configuration>
+					<username>${jbossasmaven.username}</username>
+					<port>${hostname.deploy.port}</port>
+					<password>${jbossasmaven.password}</password>
+					<filename>mao.war</filename>
+				</configuration>
+				<executions>
+
+					<!-- desplegar en el servidor 1 -->
+
+					<!-- Undeploy the application on clean -->
+
+					<execution>
+						<id>undeployServ1</id>
+						<phase>clean</phase>
+						<goals>
+							<goal>undeploy</goal>
+						</goals>
+						<configuration>
+							<hostname>${hostname1.deploy}</hostname>
+							<port>${hostname.deploy.port}</port>
+							<ignoreMissingDeployment>true</ignoreMissingDeployment>
+						</configuration>
+					</execution>
+
+					<!-- Deploy the application on clean -->
+
+					<execution>
+						<id>deployServ1</id>
+						<phase>deploy</phase>
+						<goals>
+							<goal>deploy-only</goal>
+						</goals>
+						<configuration>
+							<hostname>${hostname1.deploy}</hostname>
+							<port>${hostname.deploy.port}</port>
+						</configuration>
+					</execution>
+
+
+
+					<!-- desplegar en el servidor 2 -->
+
+					<!-- Undeploy the application on clean -->
+
+					<execution>
+
+						<id>undeployServ2</id>
+						<phase>clean</phase>
+						<goals>
+							<goal>undeploy</goal>
+						</goals>
+						<configuration>
+							<hostname>${hostname2.deploy}</hostname>
+							<port>${hostname.deploy.port}</port>
+							<ignoreMissingDeployment>true</ignoreMissingDeployment>
+						</configuration>
+					</execution>
+
+					<!-- Deploy the application on clean -->
+
+					<execution>
+						<id>deployServ2</id>
+						<phase>deploy</phase>
+						<goals>
+							<goal>deploy-only</goal>
+						</goals>
+						<configuration>
+							<hostname>${hostname2.deploy}</hostname>
+							<port>${hostname.deploy.port}</port>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<!-- plugin sonar -->
+				<groupId>org.codehaus.mojo</groupId>
+
+				<artifactId>sonar-maven-plugin</artifactId>
+
+				<version>2.6</version>
+
+			</plugin>
+		</plugins>
+	</build>
+
+	<profiles>
+		<!-- Empaquetar para producción: mvn package -P produccion -->
+		<profile>
+			<id>produccion</id>
+			<properties>
+				<maven.compiler.debug>false</maven.compiler.debug>
+				<maven.compiler.optimize>true</maven.compiler.optimize>
+			</properties>
+		</profile>
+		<profile>
+			<id>sonar</id>
+			<activation>
+				<activeByDefault>true</activeByDefault>
+			</activation>
+			<properties>
+				<sonar.host.url>${sonarqube.host.url}</sonar.host.url>
+				<sonar.login>${sonarqube.login.user}</sonar.login>
+				<sonar.password>${sonarqube.login.password}</sonar.password>
+				<sonar.profile>${sonarqube.profile}</sonar.profile>
+				<sonar.core.codeCoveragePlugin>jacoco</sonar.core.codeCoveragePlugin>
+				<sonar.jacoco.reportPath>${project.build.directory}/coverage-reports/jacoco-ut.exec</sonar.jacoco.reportPath>
+			</properties>
+		</profile>
+	</profiles>
+
+	<!-- ARCHIVA CONFIGURATION  
+	<distributionManagement>
+		<repository>
+			<id>archiva.areadesa</id>
+			<name>OEPM Archiva Repository</name>
+			<url>http://integracion.oepm.local:8888/archiva/repository/areadesa</url>
+		</repository>
+	</distributionManagement>
+-->
+
+	<dependencyManagement>
+		<dependencies>
+			<!-- Excluir del WAR las dependencias que tiene JBOSS -->
+			<dependency>
+				<groupId>org.hibernate</groupId>
+				<artifactId>hibernate-core</artifactId>
+				<version>4.1.6.Final</version>
+				<scope>provided</scope>
+			</dependency>
+			<dependency>
+				<groupId>org.hibernate.javax.persistence</groupId>
+				<artifactId>hibernate-jpa-2.0-api</artifactId>
+				<version>1.0.1.Final</version>
+				<scope>provided</scope>
+			</dependency>
+			<dependency>
+				<groupId>org.hibernate.common</groupId>
+				<artifactId>hibernate-commons-annotations</artifactId>
+				<version>4.0.1.Final</version>
+				<scope>provided</scope>
+			</dependency>
+			<dependency>
+				<groupId>org.jboss.logging</groupId>
+				<artifactId>jboss-logging</artifactId>
+				<version>3.1.0.CR2</version>
+				<scope>provided</scope>
+			</dependency>
+			<dependency>
+				<groupId>org.hibernate</groupId>
+				<artifactId>hibernate-entitymanager</artifactId>
+				<version>4.1.6.Final</version>
+				<scope>provided</scope>
+			</dependency>
+			<dependency>
+				<groupId>com.oracle</groupId>
+				<artifactId>ojdbc14</artifactId>
+				<version>10.2.0.4.0</version>
+				<scope>provided</scope>
+			</dependency>
+			<dependency>
+				<groupId>org.jboss.spec.javax.faces</groupId>
+				<artifactId>jboss-jsf-api_2.2_spec</artifactId>
+				<version>2.2.13</version>
+				<scope>provided</scope>
+			</dependency>
+			<dependency>
+				<groupId>org.jboss.spec.javax.transaction</groupId>
+				<artifactId>jboss-transaction-api_1.1_spec</artifactId>
+				<version>1.0.1.Final</version>
+				<scope>provided</scope>
+			</dependency>
+
+			<!-- Dependencias para decriptar passwords -->
+			<dependency>
+				<groupId>es.oepm.utilidades</groupId>
+				<artifactId>cifraoepm</artifactId>
+				<version>0.0.2</version>
+			</dependency>
+
+			<dependency>
+				<groupId>commons-codec</groupId>
+				<artifactId>commons-codec</artifactId>
+				<version>1.4</version>
+			</dependency>
+
+			<dependency>
+				<groupId>commons-lang</groupId>
+				<artifactId>commons-lang</artifactId>
+				<version>2.6</version>
+			</dependency>
+			<dependency>
+				<groupId>junit</groupId>
+				<artifactId>junit</artifactId>
+				<version>4.12</version>
+				<scope>test</scope>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
+</project>
